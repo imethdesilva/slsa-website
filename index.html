@@ -34,10 +34,12 @@
         .slider-track { display: flex; transition: transform 0.7s ease-in-out; height: 100%; }
         .slide { min-width: 100%; height: 100%; object-fit: cover; }
 
-        #mobile-menu { transition: all 0.3s ease-in-out; }
+        /* Modal Custom Scrollbar */
+        .modal-scroll::-webkit-scrollbar { width: 6px; }
+        .modal-scroll::-webkit-scrollbar-track { background: #1e293b; }
+        .modal-scroll::-webkit-scrollbar-thumb { background: #475569; border-radius: 10px; }
 
-        /* Modal Blur Effect */
-        #news-modal { backdrop-filter: blur(8px); }
+        #mobile-menu { transition: all 0.3s ease-in-out; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900 overflow-x-hidden">
@@ -146,7 +148,7 @@
             <!-- YouTube Highlights -->
             <div class="container mx-auto px-6 py-16">
                 <div class="bg-white rounded-3xl overflow-hidden shadow-xl flex flex-col md:flex-row border border-gray-100">
-                    <div class="md:w-1/2 p-12 flex flex-col justify-center">
+                    <div class="md:w-1/2 p-12 flex flex-col justify-center text-left">
                         <h2 class="text-3xl font-bold emerald-text mb-4">Subscribe and Watch Highlights</h2>
                         <p class="text-gray-600 mb-6">Catch the Livestreaming of the New Year Scrabble Festival 2026. See the strategy behind the tiles.</p>
                         <div class="flex space-x-4">
@@ -203,7 +205,7 @@
             <div class="container mx-auto px-6 py-12">
                 <h2 class="text-4xl font-extrabold emerald-text mb-12 text-center">Tournament Archives</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all border border-gray-100 overflow-hidden flex flex-col h-full">
+                    <div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all border border-gray-100 overflow-hidden flex flex-col h-full text-left">
                         <div class="h-48 bg-emerald-900 relative">
                             <img src="img/img 1.jpeg" class="w-full h-full object-cover opacity-50" alt="Tournament">
                             <div class="absolute top-4 right-4 bg-amber-500 text-white font-bold px-4 py-1 rounded-full text-xs">OPEN</div>
@@ -240,24 +242,37 @@
             </div>
         </section>
 
-        <!-- PAGE: NEWS (DYNAMIC) -->
+        <!-- PAGE: NEWS -->
         <section id="news" class="page-content">
             <div class="container mx-auto px-6 py-12 text-center">
                 <h2 class="text-4xl font-extrabold emerald-text mb-12">Academy News</h2>
-                <!-- DYNAMIC CONTAINER -->
                 <div id="news-container" class="grid md:grid-cols-3 gap-8 text-left">
-                    <!-- JavaScript will inject cards here from news.json -->
+                    <!-- Dynamic News Cards Injected Here -->
                 </div>
             </div>
         </section>
 
-        <!-- NEWS MODAL (EXPANDED ARTICLE) -->
-        <div id="news-modal" class="fixed inset-0 z-[200] hidden flex items-center justify-center p-4 bg-black/80">
-            <div class="bg-white dark:bg-slate-900 w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl shadow-2xl relative">
-                <button onclick="closeNewsModal()" class="absolute top-6 right-6 text-2xl hover:text-red-500 transition"><i class="fas fa-times"></i></button>
+        <!-- DYNAMIC NEWS MODAL -->
+        <div id="news-modal" class="fixed inset-0 z-[200] hidden flex items-center justify-center p-4 bg-black/90 transition-all duration-300">
+            <div class="bg-slate-900 w-full max-w-6xl h-[90vh] flex flex-col md:flex-row overflow-hidden rounded-3xl shadow-2xl relative border border-slate-700">
                 
-                <div id="modal-body" class="p-8 md:p-12">
-                    <!-- Modal content injected here -->
+                <!-- Close Button -->
+                <button onclick="closeNewsModal()" class="absolute top-6 right-6 z-[210] text-gray-400 hover:text-white text-3xl transition">
+                    <i class="fas fa-times-circle"></i>
+                </button>
+
+                <!-- Left Section: Image Gallery -->
+                <div class="w-full md:w-5/12 bg-slate-800 overflow-y-auto modal-scroll p-6 space-y-4 border-r border-slate-700">
+                    <div id="modal-images" class="space-y-4">
+                        <!-- Images injected here -->
+                    </div>
+                </div>
+
+                <!-- Right Section: Content -->
+                <div class="w-full md:w-7/12 overflow-y-auto modal-scroll p-8 md:p-12 text-left">
+                    <div id="modal-text-content">
+                        <!-- Title, Date, Content injected here -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -267,6 +282,7 @@
             <div class="container mx-auto px-6 py-12 text-center">
                 <h2 class="text-4xl font-extrabold emerald-text mb-12">Executive Committee</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+                    <!-- Card President -->
                     <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-slate-700">
                         <div class="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mb-6"><i class="fas fa-user-tie text-3xl text-emerald-800 dark:text-emerald-400"></i></div>
                         <h3 class="text-xl font-bold emerald-text">Raashid Sudin</h3>
@@ -276,11 +292,13 @@
                             <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> National Team Captain</li>
                         </ul>
                     </div>
+                    <!-- Card VP -->
                     <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-slate-700">
                         <div class="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mb-6"><i class="fas fa-user-shield text-3xl text-emerald-800 dark:text-emerald-400"></i></div>
                         <h3 class="text-xl font-bold emerald-text">To Be Appointed</h3>
                         <p class="text-amber-600 text-sm font-bold uppercase tracking-widest mb-4">Vice President</p>
                     </div>
+                    <!-- Card Secretary -->
                     <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-slate-700">
                         <div class="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mb-6"><i class="fas fa-pen-nib text-3xl text-emerald-800 dark:text-emerald-400"></i></div>
                         <h3 class="text-xl font-bold emerald-text">Imeth De Silva</h3>
@@ -290,11 +308,13 @@
                             <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Digital Infrastructure Lead</li>
                         </ul>
                     </div>
+                    <!-- Card CM 1 -->
                     <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-slate-700">
                         <div class="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mb-6"><i class="fas fa-users text-3xl text-emerald-800 dark:text-emerald-400"></i></div>
                         <h3 class="text-xl font-bold emerald-text">Kavindu Malwaraarachchi</h3>
                         <p class="text-amber-600 text-sm font-bold uppercase tracking-widest mb-4">Committee Member</p>
                     </div>
+                    <!-- Card CM 2 -->
                     <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-slate-700">
                         <div class="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mb-6"><i class="fas fa-users text-3xl text-emerald-800 dark:text-emerald-400"></i></div>
                         <h3 class="text-xl font-bold emerald-text">Zainab Sultan</h3>
@@ -330,7 +350,7 @@
 
     <!-- FOOTER -->
     <footer class="bg-gray-100 dark:bg-slate-900 py-12 mt-20">
-        <div class="container mx-auto px-6 text-center">
+        <div class="container mx-auto px-6 text-center text-left">
             <div class="flex justify-center space-x-6 mb-8 text-2xl text-emerald-800 dark:text-emerald-400">
                 <a href="https://web.facebook.com/p/Sri-Lanka-Scrabble-Academy" target="_blank"><i class="fab fa-facebook"></i></a>
                 <a href="https://www.instagram.com/slscrabbleacademy?igsh=MTBpaHJ4YjAyeHFjZQ==" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -350,30 +370,43 @@
             if (pageId === 'home') startCounters();
         }
 
-        // MOBILE MENU TOGGLE
+        // MOBILE MENU
         function toggleMobileMenu() {
             document.getElementById('mobile-menu').classList.toggle('hidden');
         }
 
-        // DARK MODE TOGGLE
+        // DARK MODE
         function toggleDarkMode() {
             document.body.classList.toggle('dark');
             const icon = document.getElementById('dark-icon');
             icon.className = document.body.classList.contains('dark') ? 'fas fa-sun' : 'fas fa-moon';
         }
 
+        // STATS COUNTER
+        function startCounters() {
+            document.querySelectorAll('.counter').forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                let current = 0;
+                const increment = target / 50;
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        counter.innerText = Math.ceil(current);
+                        setTimeout(updateCounter, 20);
+                    } else { counter.innerText = target; }
+                };
+                updateCounter();
+            });
+        }
+
         // DYNAMIC NEWS SYSTEM
         let newsData = [];
-
         async function loadNews() {
             try {
-                // Feteching from local json file
                 const response = await fetch('news.json');
                 newsData = await response.json();
                 renderNewsCards();
-            } catch (err) {
-                console.error("Error loading news. Make sure news.json exists.", err);
-            }
+            } catch (err) { console.error("Error loading news.json", err); }
         }
 
         function renderNewsCards() {
@@ -397,43 +430,30 @@
             const item = newsData.find(n => n.id === id);
             if (!item) return;
 
-            const modalBody = document.getElementById('modal-body');
-            modalBody.innerHTML = `
-                <p class="text-amber-600 font-bold uppercase text-sm mb-2">${item.date}</p>
-                <h2 class="text-3xl md:text-4xl font-extrabold emerald-text mb-6">${item.title}</h2>
-                <img src="${item.coverImage}" class="w-full h-72 md:h-96 object-cover rounded-3xl mb-8">
-                <div class="text-gray-600 dark:text-gray-300 leading-relaxed mb-10 text-lg">
-                    ${item.content}
-                </div>
-                
-                <h3 class="text-xl font-bold mb-6 emerald-text">Gallery</h3>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    ${item.gallery.map(img => `<img src="${img}" class="w-full h-40 object-cover rounded-xl shadow hover:scale-105 transition">`).join('')}
+            // Inject Images to Left
+            const imageContainer = document.getElementById('modal-images');
+            imageContainer.innerHTML = `
+                <img src="${item.coverImage}" class="w-full rounded-2xl shadow-lg border border-slate-700">
+                ${item.gallery.map(img => `<img src="${img}" class="w-full rounded-2xl shadow shadow-black/50">`).join('')}
+            `;
+
+            // Inject Text to Right (Topic is White)
+            const textContainer = document.getElementById('modal-text-content');
+            textContainer.innerHTML = `
+                <p class="text-amber-500 font-bold uppercase text-sm mb-4 tracking-widest">${item.date}</p>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-8 leading-tight">${item.title}</h2>
+                <div class="text-slate-300 leading-relaxed text-lg space-y-6">
+                    ${item.content.split('\n').join('<br><br>')}
                 </div>
             `;
+
             document.getElementById('news-modal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Stop scrolling behind modal
+            document.body.style.overflow = 'hidden';
         }
 
         function closeNewsModal() {
             document.getElementById('news-modal').classList.add('hidden');
             document.body.style.overflow = 'auto';
-        }
-
-        // STATS COUNTER
-        function startCounters() {
-            document.querySelectorAll('.counter').forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                let current = 0;
-                const updateCounter = () => {
-                    if (current < target) {
-                        current += target / 50;
-                        counter.innerText = Math.ceil(current);
-                        setTimeout(updateCounter, 20);
-                    } else { counter.innerText = target; }
-                };
-                updateCounter();
-            });
         }
 
         // SLIDER
