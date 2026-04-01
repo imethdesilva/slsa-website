@@ -58,13 +58,14 @@
                 </div>
             </div>
             
-            <!-- DESKTOP MENU -->
+            <!-- DESKTOP MENU (Calendar moved before News, Committee added after News) -->
             <div class="hidden lg:flex space-x-8 text-sm font-bold uppercase tracking-wider text-gray-600">
                 <a href="javascript:void(0)" onclick="showPage('home')" class="hover:text-emerald-700 transition">Home</a>
                 <a href="javascript:void(0)" onclick="showPage('ratings')" class="hover:text-emerald-700 transition">Ratings</a>
                 <a href="javascript:void(0)" onclick="showPage('tournaments')" class="hover:text-emerald-700 transition">Tournaments</a>
-                <a href="javascript:void(0)" onclick="showPage('news')" class="hover:text-emerald-700 transition">News</a>
                 <a href="javascript:void(0)" onclick="showPage('calendar')" class="hover:text-emerald-700 transition">Calendar</a>
+                <a href="javascript:void(0)" onclick="showPage('news')" class="hover:text-emerald-700 transition">News</a>
+                <a href="javascript:void(0)" onclick="showPage('committee')" class="hover:text-emerald-700 transition">Committee</a>
                 <a href="javascript:void(0)" onclick="showPage('contact')" class="hover:text-emerald-700 transition">Contact</a>
             </div>
 
@@ -94,8 +95,9 @@
                 <a href="javascript:void(0)" onclick="showPage('home')">Home</a>
                 <a href="javascript:void(0)" onclick="showPage('ratings')">Ratings</a>
                 <a href="javascript:void(0)" onclick="showPage('tournaments')">Tournaments</a>
-                <a href="javascript:void(0)" onclick="showPage('news')">News</a>
                 <a href="javascript:void(0)" onclick="showPage('calendar')">Calendar</a>
+                <a href="javascript:void(0)" onclick="showPage('news')">News</a>
+                <a href="javascript:void(0)" onclick="showPage('committee')">Committee</a>
                 <a href="javascript:void(0)" onclick="showPage('contact')">Contact</a>
             </div>
         </div>
@@ -259,26 +261,6 @@
             </div>
         </section>
 
-        <!-- PAGE: NEWS -->
-        <section id="news" class="page-content">
-            <div class="container mx-auto px-6 py-12 text-center">
-                <h2 class="text-4xl font-extrabold emerald-text mb-12">Academy News</h2>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-white text-left rounded-3xl shadow-md border border-gray-100 overflow-hidden group">
-                        <div class="h-56 bg-gray-200 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1000" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        </div>
-                        <div class="p-8">
-                            <p class="text-amber-600 text-xs font-bold uppercase mb-2">Oct 20, 2023</p>
-                            <h3 class="text-xl font-bold emerald-text mb-3">New Youth Program Launched</h3>
-                            <p class="text-gray-600 text-sm mb-6">Developing the next generation of Scrabble stars in the Central Province.</p>
-                            <a href="#" class="emerald-text font-bold text-sm">Read Article <i class="fas fa-arrow-right ml-1 text-xs"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- PAGE: CALENDAR -->
         <section id="calendar" class="page-content">
             <div class="container mx-auto px-6 py-12 text-center">
@@ -300,6 +282,101 @@
             </div>
         </section>
 
+        <!-- PAGE: NEWS -->
+        <section id="news" class="page-content">
+            <div class="container mx-auto px-6 py-12 text-center">
+                <h2 class="text-4xl font-extrabold emerald-text mb-12">Academy News</h2>
+                <div class="grid md:grid-cols-3 gap-8 text-left">
+                    <div class="bg-white text-left rounded-3xl shadow-md border border-gray-100 overflow-hidden group">
+                        <div class="h-56 bg-gray-200 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1000" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        </div>
+                        <div class="p-8">
+                            <p class="text-amber-600 text-xs font-bold uppercase mb-2">Oct 20, 2023</p>
+                            <h3 class="text-xl font-bold emerald-text mb-3">New Youth Program Launched</h3>
+                            <p class="text-gray-600 text-sm mb-6">Developing the next generation of Scrabble stars in the Central Province.</p>
+                            <a href="#" class="emerald-text font-bold text-sm">Read Article <i class="fas fa-arrow-right ml-1 text-xs"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE: COMMITTEE -->
+        <section id="committee" class="page-content">
+            <div class="container mx-auto px-6 py-12 text-center">
+                <h2 class="text-4xl font-extrabold emerald-text mb-12">Executive Committee</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+                    <!-- President -->
+                    <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-slate-700">
+                        <div class="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-user-tie text-3xl text-emerald-800 dark:text-emerald-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold emerald-text">Raashid Sudin</h3>
+                        <p class="text-amber-600 text-sm font-bold uppercase tracking-widest mb-4">President</p>
+                        <ul class="text-gray-500 dark:text-gray-400 text-sm space-y-2">
+                            <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> World Scrabble Master</li>
+                            <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> National Team Captain</li>
+                            <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> 10+ Years Coaching Experience</li>
+                        </ul>
+                    </div>
+
+                    <!-- Vice President -->
+                    <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-slate-700">
+                        <div class="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-user-shield text-3xl text-emerald-800 dark:text-emerald-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold emerald-text">To Be Appointed</h3>
+                        <p class="text-amber-600 text-sm font-bold uppercase tracking-widest mb-4">Vice President</p>
+                        <ul class="text-gray-500 dark:text-gray-400 text-sm space-y-2">
+                            <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Strategic Planning lead</li>
+                            <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Tournament Operations</li>
+                        </ul>
+                    </div>
+
+                    <!-- Secretary -->
+                    <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-slate-700">
+                        <div class="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-pen-nib text-3xl text-emerald-800 dark:text-emerald-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold emerald-text">Imeth De Silva</h3>
+                        <p class="text-amber-600 text-sm font-bold uppercase tracking-widest mb-4">Secretary</p>
+                        <ul class="text-gray-500 dark:text-gray-400 text-sm space-y-2">
+                            <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Administrative Specialist</li>
+                            <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Digital Infrastructure Lead</li>
+                            <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Communication Coordinator</li>
+                        </ul>
+                    </div>
+
+                    <!-- Committee Member 1 -->
+                    <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-slate-700">
+                        <div class="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-users text-3xl text-emerald-800 dark:text-emerald-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold emerald-text">Kavindu Malwaraarachchi</h3>
+                        <p class="text-amber-600 text-sm font-bold uppercase tracking-widest mb-4">Committee Member</p>
+                        <ul class="text-gray-500 dark:text-gray-400 text-sm space-y-2">
+                            <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Youth Development Officer</li>
+                            <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Regional Outreach Lead</li>
+                        </ul>
+                    </div>
+
+                    <!-- Committee Member 2 -->
+                    <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-slate-700">
+                        <div class="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-users text-3xl text-emerald-800 dark:text-emerald-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold emerald-text">Zainab Sultan</h3>
+                        <p class="text-amber-600 text-sm font-bold uppercase tracking-widest mb-4">Committee Member</p>
+                        <ul class="text-gray-500 dark:text-gray-400 text-sm space-y-2">
+                            <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Event Logistics Manager</li>
+                            <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Workshop Coordinator</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- PAGE: CONTACT -->
         <section id="contact" class="page-content">
             <div class="container mx-auto px-6 py-12 max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
@@ -311,7 +388,7 @@
                         <p><i class="fas fa-map-marker-alt mr-3"></i> Colombo 07, SL</p>
                     </div>
                 </div>
-                <div class="md:w-2/3 p-12">
+                <div class="md:w-2/3 p-12 text-left">
                     <form class="space-y-4">
                         <input type="text" placeholder="Your Name" class="w-full p-4 bg-gray-50 dark:bg-slate-700 rounded-xl border outline-none focus:ring-2 focus:ring-emerald-500">
                         <input type="email" placeholder="Email Address" class="w-full p-4 bg-gray-50 dark:bg-slate-700 rounded-xl border outline-none focus:ring-2 focus:ring-emerald-500">
