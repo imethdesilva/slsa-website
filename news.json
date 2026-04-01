@@ -1,0 +1,21 @@
+[
+  {
+    "id": 1,
+    "date": "January 14, 2026",
+    "title": "Workshop at Springfield College Kandy",
+    "summary": "A Scrabble workshop for beginners was successfully conducted at Springfield College on 14th January",
+    "content": "A Scrabble workshop for beginners was successfully conducted at Springfield College on 14th January, introducing students to a fresh and strategic approach to the game of Scrabble. The session saw over 40 participants from Springfield College, Kandy, enthusiastically taking part. Designed especially for beginners, the workshop focused on building a strong foundation in Scrabble, moving beyond basic word formation to a more structured and strategic understanding of the game. Participants were introduced to key concepts such as board awareness, rack management, scoring strategies, and efficient word selection — helping them view Scrabble not just as a word game, but as a competitive mind sport. The workshop was conducted by Raashid Sudin, President of the Sri Lanka Scrabble Academy, whose engaging and practical teaching approach helped students grasp new strategies with ease. The Springfield College workshop marked another important step in the Academy’s ongoing efforts to promote Scrabble at educational institutions and to nurture young players by equipping them with modern techniques and strategic insight into the game.",
+    "coverImage": "img/springfield.png",
+    "gallery": ["img/springfield.png"]
+  },
+
+    {
+    "id": 2,
+    "date": "January 31, 2026",
+    "title": "Workshop at University of Peradeniya",
+    "summary": "A Scrabble workshop for beginners was successfully conducted at University of Peradeniya on 31st January",
+    "content": "The Sri Lanka Scrabble Academy helped organized an Introductory workshop and tournament at the University of Peradeniya on 31st January, marking another important step in expanding Scrabble within Sri Lanka’s university community. The workshop was conducted by Raashid Sudin, President of the Sri Lanka Scrabble Academy, together with the Academy’s Secretary, Imeth De Silva. The session was organized by Shamil Rashaad, the University Scrabble Captain at the University of Peradeniya, whose initiative brought together an enthusiastic group of students eager to learn and experience the game. The programme began with an introductory workshop designed to familiarize participants with the fundamentals of competitive Scrabble. Key areas covered included strategic thinking, teamwork, and effective decision-making on the board. Following the introduction, university students paired into teams of two and competed against other pairs in an American School Scrabble–style format for the very first time in Sri Lanka. This format encouraged collaboration, learning through play, and healthy competition. There were some interesting team names such as Ravenclaw, Zyzzyvas, Scammers, Sakura, Kavi,  Panda, Team Q, Electric Scalpers etc etc....While Team Panda won the tournament, Ravenclaw secured the Runners up position and 2nd runners up was Scammers.....Sri Lanka Scrabble Academy is committed to introducing new tournament formats to the country to add flair to already a growing scrabble community...The atmosphere throughout the session was lively and engaging, with students quickly adapting to the format and embracing Scrabble as both a mental challenge and a social activity. The mini tournament added excitement to the programme, reinforcing the idea that Scrabble can be both educational and enjoyable. The workshop concluded on a high note, reflecting a successful introduction to Scrabble at the University of Peradeniya and reaffirming the Sri Lanka Scrabble Academy’s commitment to promoting and developing the game across universities throughout the country.",
+    "coverImage": "img/UoP1.jpeg",
+    "gallery": ["img/UoP1.jpeg", "img/UoP2.jpeg", "img/UoP3.jpeg", "img/UoP4.jpeg"]
+  }
+]

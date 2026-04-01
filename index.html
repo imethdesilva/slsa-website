@@ -34,13 +34,10 @@
         .slider-track { display: flex; transition: transform 0.7s ease-in-out; height: 100%; }
         .slide { min-width: 100%; height: 100%; object-fit: cover; }
 
-        .scrabble-tile-main {
-            background: #f3cf7a;
-            box-shadow: 3px 3px 0px #b89546;
-            border-radius: 4px;
-        }
-
         #mobile-menu { transition: all 0.3s ease-in-out; }
+
+        /* Modal Blur Effect */
+        #news-modal { backdrop-filter: blur(8px); }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900 overflow-x-hidden">
@@ -58,7 +55,7 @@
                 </div>
             </div>
             
-            <!-- DESKTOP MENU (Calendar moved before News, Committee added after News) -->
+            <!-- DESKTOP MENU -->
             <div class="hidden lg:flex space-x-8 text-sm font-bold uppercase tracking-wider text-gray-600">
                 <a href="javascript:void(0)" onclick="showPage('home')" class="hover:text-emerald-700 transition">Home</a>
                 <a href="javascript:void(0)" onclick="showPage('ratings')" class="hover:text-emerald-700 transition">Ratings</a>
@@ -69,9 +66,8 @@
                 <a href="javascript:void(0)" onclick="showPage('contact')" class="hover:text-emerald-700 transition">Contact</a>
             </div>
 
-            <!-- RIGHT CONTROLS (Dark Mode & Mobile Toggle) -->
+            <!-- RIGHT CONTROLS -->
             <div class="flex items-center space-x-5">
-                <!-- Dark Mode Toggle -->
                 <button onclick="toggleDarkMode()" class="text-xl text-gray-600 dark:text-amber-400 focus:outline-none">
                     <i id="dark-icon" class="fas fa-moon"></i>
                 </button>
@@ -82,7 +78,6 @@
                     <a href="http://www.youtube.com/@SLScrabbleAcademy" target="_blank" class="text-emerald-800 hover:text-amber-500"><i class="fab fa-youtube"></i></a>
                 </div>
 
-                <!-- Hamburger Button -->
                 <button class="lg:hidden text-2xl text-emerald-800" onclick="toggleMobileMenu()">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -162,43 +157,6 @@
                     </div>
                     <div class="md:w-1/2 bg-black aspect-video relative">
                         <iframe class="w-full h-full" src="https://www.youtube.com/embed/YvMMJqZ7l2g" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Snippets -->
-            <div class="container mx-auto px-6 py-16 grid md:grid-cols-2 gap-8">
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-2xl font-bold emerald-text">Latest News</h3>
-                        <button onclick="showPage('news')" class="text-amber-600 font-bold text-sm">View All</button>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="flex gap-4">
-                            <div class="w-20 h-20 bg-gray-200 rounded-lg flex-shrink-0 overflow-hidden">
-                                <img src="img/img 5.jpeg" alt="News" class="w-full h-full object-cover">
-                            </div>
-                            <div>
-                                <h4 class="font-bold">New Year Scrabble Festival 2026</h4>
-                                <p class="text-sm text-gray-500">The first WESPA rated tournament in Sri Lanka after 2024</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-2xl font-bold emerald-text">Top Rankings</h3>
-                        <button onclick="showPage('ratings')" class="text-amber-600 font-bold text-sm">Full Table</button>
-                    </div>
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-slate-700 rounded-lg">
-                            <span class="font-bold text-emerald-800 dark:text-emerald-400">1. Raashid Sudin</span>
-                            <span class="bg-amber-100 text-amber-800 px-3 py-1 rounded text-xs font-bold">1945</span>
-                        </div>
-                        <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-slate-700 rounded-lg">
-                            <span class="font-bold text-emerald-800 dark:text-emerald-400">2. Kavindu Malli</span>
-                            <span class="bg-amber-100 text-amber-800 px-3 py-1 rounded text-xs font-bold">1820</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -282,104 +240,73 @@
             </div>
         </section>
 
-        <!-- PAGE: NEWS -->
+        <!-- PAGE: NEWS (DYNAMIC) -->
         <section id="news" class="page-content">
             <div class="container mx-auto px-6 py-12 text-center">
                 <h2 class="text-4xl font-extrabold emerald-text mb-12">Academy News</h2>
-                <div class="grid md:grid-cols-3 gap-8 text-left">
-                    <div class="bg-white text-left rounded-3xl shadow-md border border-gray-100 overflow-hidden group">
-                        <div class="h-56 bg-gray-200 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1000" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        </div>
-                        <div class="p-8">
-                            <p class="text-amber-600 text-xs font-bold uppercase mb-2">Oct 20, 2023</p>
-                            <h3 class="text-xl font-bold emerald-text mb-3">New Youth Program Launched</h3>
-                            <p class="text-gray-600 text-sm mb-6">Developing the next generation of Scrabble stars in the Central Province.</p>
-                            <a href="#" class="emerald-text font-bold text-sm">Read Article <i class="fas fa-arrow-right ml-1 text-xs"></i></a>
-                        </div>
-                    </div>
+                <!-- DYNAMIC CONTAINER -->
+                <div id="news-container" class="grid md:grid-cols-3 gap-8 text-left">
+                    <!-- JavaScript will inject cards here from news.json -->
                 </div>
             </div>
         </section>
+
+        <!-- NEWS MODAL (EXPANDED ARTICLE) -->
+        <div id="news-modal" class="fixed inset-0 z-[200] hidden flex items-center justify-center p-4 bg-black/80">
+            <div class="bg-white dark:bg-slate-900 w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl shadow-2xl relative">
+                <button onclick="closeNewsModal()" class="absolute top-6 right-6 text-2xl hover:text-red-500 transition"><i class="fas fa-times"></i></button>
+                
+                <div id="modal-body" class="p-8 md:p-12">
+                    <!-- Modal content injected here -->
+                </div>
+            </div>
+        </div>
 
         <!-- PAGE: COMMITTEE -->
         <section id="committee" class="page-content">
             <div class="container mx-auto px-6 py-12 text-center">
                 <h2 class="text-4xl font-extrabold emerald-text mb-12">Executive Committee</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-                    <!-- President -->
                     <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-slate-700">
-                        <div class="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mb-6">
-                            <i class="fas fa-user-tie text-3xl text-emerald-800 dark:text-emerald-400"></i>
-                        </div>
+                        <div class="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mb-6"><i class="fas fa-user-tie text-3xl text-emerald-800 dark:text-emerald-400"></i></div>
                         <h3 class="text-xl font-bold emerald-text">Raashid Sudin</h3>
                         <p class="text-amber-600 text-sm font-bold uppercase tracking-widest mb-4">President</p>
                         <ul class="text-gray-500 dark:text-gray-400 text-sm space-y-2">
                             <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> World Scrabble Master</li>
                             <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> National Team Captain</li>
-                            <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> 10+ Years Coaching Experience</li>
                         </ul>
                     </div>
-
-                    <!-- Vice President -->
                     <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-slate-700">
-                        <div class="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mb-6">
-                            <i class="fas fa-user-shield text-3xl text-emerald-800 dark:text-emerald-400"></i>
-                        </div>
+                        <div class="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mb-6"><i class="fas fa-user-shield text-3xl text-emerald-800 dark:text-emerald-400"></i></div>
                         <h3 class="text-xl font-bold emerald-text">To Be Appointed</h3>
                         <p class="text-amber-600 text-sm font-bold uppercase tracking-widest mb-4">Vice President</p>
-                        <ul class="text-gray-500 dark:text-gray-400 text-sm space-y-2">
-                            <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Strategic Planning lead</li>
-                            <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Tournament Operations</li>
-                        </ul>
                     </div>
-
-                    <!-- Secretary -->
                     <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-slate-700">
-                        <div class="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mb-6">
-                            <i class="fas fa-pen-nib text-3xl text-emerald-800 dark:text-emerald-400"></i>
-                        </div>
+                        <div class="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mb-6"><i class="fas fa-pen-nib text-3xl text-emerald-800 dark:text-emerald-400"></i></div>
                         <h3 class="text-xl font-bold emerald-text">Imeth De Silva</h3>
                         <p class="text-amber-600 text-sm font-bold uppercase tracking-widest mb-4">Secretary</p>
                         <ul class="text-gray-500 dark:text-gray-400 text-sm space-y-2">
                             <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Administrative Specialist</li>
                             <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Digital Infrastructure Lead</li>
-                            <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Communication Coordinator</li>
                         </ul>
                     </div>
-
-                    <!-- Committee Member 1 -->
                     <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-slate-700">
-                        <div class="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mb-6">
-                            <i class="fas fa-users text-3xl text-emerald-800 dark:text-emerald-400"></i>
-                        </div>
+                        <div class="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mb-6"><i class="fas fa-users text-3xl text-emerald-800 dark:text-emerald-400"></i></div>
                         <h3 class="text-xl font-bold emerald-text">Kavindu Malwaraarachchi</h3>
                         <p class="text-amber-600 text-sm font-bold uppercase tracking-widest mb-4">Committee Member</p>
-                        <ul class="text-gray-500 dark:text-gray-400 text-sm space-y-2">
-                            <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Youth Development Officer</li>
-                            <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Regional Outreach Lead</li>
-                        </ul>
                     </div>
-
-                    <!-- Committee Member 2 -->
                     <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-lg border border-gray-100 dark:border-slate-700">
-                        <div class="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mb-6">
-                            <i class="fas fa-users text-3xl text-emerald-800 dark:text-emerald-400"></i>
-                        </div>
+                        <div class="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mb-6"><i class="fas fa-users text-3xl text-emerald-800 dark:text-emerald-400"></i></div>
                         <h3 class="text-xl font-bold emerald-text">Zainab Sultan</h3>
                         <p class="text-amber-600 text-sm font-bold uppercase tracking-widest mb-4">Committee Member</p>
-                        <ul class="text-gray-500 dark:text-gray-400 text-sm space-y-2">
-                            <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Event Logistics Manager</li>
-                            <li><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Workshop Coordinator</li>
-                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- PAGE: CONTACT -->
-        <section id="contact" class="page-content">
-            <div class="container mx-auto px-6 py-12 max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
+        <section id="contact" class="page-content text-left">
+            <div class="container mx-auto px-6 py-12 max-w-4xl bg-white dark:bg-slate-800 rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
                 <div class="md:w-1/3 bg-emerald-900 p-12 text-white">
                     <h2 class="text-3xl font-bold mb-6">Get in Touch</h2>
                     <div class="space-y-6 opacity-80">
@@ -388,7 +315,7 @@
                         <p><i class="fas fa-map-marker-alt mr-3"></i> Colombo 07, SL</p>
                     </div>
                 </div>
-                <div class="md:w-2/3 p-12 text-left">
+                <div class="md:w-2/3 p-12">
                     <form class="space-y-4">
                         <input type="text" placeholder="Your Name" class="w-full p-4 bg-gray-50 dark:bg-slate-700 rounded-xl border outline-none focus:ring-2 focus:ring-emerald-500">
                         <input type="email" placeholder="Email Address" class="w-full p-4 bg-gray-50 dark:bg-slate-700 rounded-xl border outline-none focus:ring-2 focus:ring-emerald-500">
@@ -408,7 +335,6 @@
                 <a href="https://web.facebook.com/p/Sri-Lanka-Scrabble-Academy" target="_blank"><i class="fab fa-facebook"></i></a>
                 <a href="https://www.instagram.com/slscrabbleacademy?igsh=MTBpaHJ4YjAyeHFjZQ==" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a href="http://www.youtube.com/@SLScrabbleAcademy" target="_blank"><i class="fab fa-youtube"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
             </div>
             <p class="text-gray-500 text-sm font-bold">&copy; 2025 SRI LANKA SCRABBLE ACADEMY. ALL RIGHTS RESERVED.</p>
         </div>
@@ -419,76 +345,113 @@
         function showPage(pageId) {
             document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            
-            // Close mobile menu if open
             document.getElementById('mobile-menu').classList.add('hidden');
             window.scrollTo(0, 0);
-            
             if (pageId === 'home') startCounters();
         }
 
         // MOBILE MENU TOGGLE
         function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+            document.getElementById('mobile-menu').classList.toggle('hidden');
         }
 
         // DARK MODE TOGGLE
         function toggleDarkMode() {
-            const body = document.body;
+            document.body.classList.toggle('dark');
             const icon = document.getElementById('dark-icon');
-            body.classList.toggle('dark');
-            
-            if (body.classList.contains('dark')) {
-                icon.classList.replace('fa-moon', 'fa-sun');
-            } else {
-                icon.classList.replace('fa-sun', 'fa-moon');
+            icon.className = document.body.classList.contains('dark') ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // DYNAMIC NEWS SYSTEM
+        let newsData = [];
+
+        async function loadNews() {
+            try {
+                // Feteching from local json file
+                const response = await fetch('news.json');
+                newsData = await response.json();
+                renderNewsCards();
+            } catch (err) {
+                console.error("Error loading news. Make sure news.json exists.", err);
             }
         }
 
-        // STATS COUNTER LOGIC
+        function renderNewsCards() {
+            const container = document.getElementById('news-container');
+            container.innerHTML = newsData.map(item => `
+                <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-md border border-gray-100 dark:border-slate-700 overflow-hidden group">
+                    <div class="h-56 overflow-hidden">
+                        <img src="${item.coverImage}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-8">
+                        <p class="text-amber-600 text-xs font-bold uppercase mb-2">${item.date}</p>
+                        <h3 class="text-xl font-bold emerald-text mb-3">${item.title}</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-6">${item.summary}</p>
+                        <button onclick="openNewsModal(${item.id})" class="emerald-text font-bold text-sm">Read Article <i class="fas fa-arrow-right ml-1 text-xs"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openNewsModal(id) {
+            const item = newsData.find(n => n.id === id);
+            if (!item) return;
+
+            const modalBody = document.getElementById('modal-body');
+            modalBody.innerHTML = `
+                <p class="text-amber-600 font-bold uppercase text-sm mb-2">${item.date}</p>
+                <h2 class="text-3xl md:text-4xl font-extrabold emerald-text mb-6">${item.title}</h2>
+                <img src="${item.coverImage}" class="w-full h-72 md:h-96 object-cover rounded-3xl mb-8">
+                <div class="text-gray-600 dark:text-gray-300 leading-relaxed mb-10 text-lg">
+                    ${item.content}
+                </div>
+                
+                <h3 class="text-xl font-bold mb-6 emerald-text">Gallery</h3>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    ${item.gallery.map(img => `<img src="${img}" class="w-full h-40 object-cover rounded-xl shadow hover:scale-105 transition">`).join('')}
+                </div>
+            `;
+            document.getElementById('news-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Stop scrolling behind modal
+        }
+
+        function closeNewsModal() {
+            document.getElementById('news-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // STATS COUNTER
         function startCounters() {
             document.querySelectorAll('.counter').forEach(counter => {
                 const target = +counter.getAttribute('data-target');
                 let current = 0;
-                const increment = target / 50;
                 const updateCounter = () => {
                     if (current < target) {
-                        current += increment;
+                        current += target / 50;
                         counter.innerText = Math.ceil(current);
                         setTimeout(updateCounter, 20);
-                    } else {
-                        counter.innerText = target;
-                    }
+                    } else { counter.innerText = target; }
                 };
                 updateCounter();
             });
         }
 
-        // SLIDER LOGIC
+        // SLIDER
         let slideIndex = 0;
-        const track = document.getElementById('sliderTrack');
-        const slides = document.querySelectorAll('.slide');
         function moveSlider() {
-            if (track) {
+            const track = document.getElementById('sliderTrack');
+            const slides = document.querySelectorAll('.slide');
+            if (track && slides.length > 0) {
                 slideIndex = (slideIndex + 1) % slides.length;
                 track.style.transform = `translateX(-${slideIndex * 100}%)`;
             }
         }
         setInterval(moveSlider, 4000);
 
-        // INITIALIZE
-        window.onload = startCounters;
-
-        // SEARCH RATINGS
-        document.getElementById('ratingSearch').addEventListener('keyup', function() {
-            let filter = this.value.toUpperCase();
-            let rows = document.querySelector("#ratingTableBody").rows;
-            for (let i = 0; i < rows.length; i++) {
-                let text = rows[i].cells[1].textContent.toUpperCase();
-                rows[i].style.display = text.includes(filter) ? "" : "none";
-            }
-        });
+        window.onload = () => {
+            startCounters();
+            loadNews();
+        };
     </script>
 </body>
 </html>
