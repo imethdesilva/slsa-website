@@ -8,11 +8,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; transition: background-color 0.3s, color 0.3s; }
         .emerald-text { color: #064e3b; }
         .bg-emerald-deep { background-color: #064e3b; }
-        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
         
+        /* Dark Mode - Deep Blue Theme */
+        body.dark { background-color: #020617; color: #f8fafc; }
+        body.dark nav { background-color: #0f172aee; border-color: #1e293b; }
+        body.dark .bg-white { background-color: #1e293b; border-color: #334155; }
+        body.dark .text-gray-600, body.dark .text-gray-500 { color: #cbd5e1; }
+        body.dark .emerald-text { color: #34d399; }
+        body.dark .bg-gray-50, body.dark .bg-gray-100 { background-color: #0f172a; }
+        body.dark .glass { background: rgba(15, 23, 42, 0.95); }
+
         /* Page Transition Logic */
         .page-content { display: none; animation: slideIn 0.5s ease-out forwards; }
         .page-content.active { display: block; }
@@ -31,6 +39,8 @@
             box-shadow: 3px 3px 0px #b89546;
             border-radius: 4px;
         }
+
+        #mobile-menu { transition: all 0.3s ease-in-out; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900 overflow-x-hidden">
@@ -38,16 +48,17 @@
     <!-- NAVIGATION -->
     <nav class="fixed top-0 w-full z-[100] bg-white/90 border-b border-gray-200 backdrop-blur-md">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            
             <!-- LOGO AREA -->
             <div class="flex items-center space-x-3 cursor-pointer" onclick="showPage('home')">
-                <!-- SUBSTITUTE YOUR ACADEMY LOGO IMAGE HERE -->
-                <img src="img\logo.png" alt="SLSA Logo" class="h-20 w-auto object-contain">
-                <div class="leading-tight">
+                <img src="img/logo.png" alt="SLSA Logo" class="h-16 md:h-20 w-auto object-contain">
+                <div class="leading-tight hidden sm:block">
                     <span class="block text-lg font-bold tracking-tighter emerald-text">Sri Lanka</span>
                     <span class="block text-[10px] text-amber-600 font-bold tracking-[0.2em] uppercase">Scrabble Academy</span>
                 </div>
             </div>
             
+            <!-- DESKTOP MENU -->
             <div class="hidden lg:flex space-x-8 text-sm font-bold uppercase tracking-wider text-gray-600">
                 <a href="javascript:void(0)" onclick="showPage('home')" class="hover:text-emerald-700 transition">Home</a>
                 <a href="javascript:void(0)" onclick="showPage('ratings')" class="hover:text-emerald-700 transition">Ratings</a>
@@ -57,20 +68,44 @@
                 <a href="javascript:void(0)" onclick="showPage('contact')" class="hover:text-emerald-700 transition">Contact</a>
             </div>
 
-            <div class="flex items-center space-x-4">
-                <a href="#" class="text-emerald-800 hover:text-amber-500"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="text-emerald-800 hover:text-amber-500"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="text-emerald-800 hover:text-amber-500"><i class="fab fa-youtube"></i></a>
+            <!-- RIGHT CONTROLS (Dark Mode & Mobile Toggle) -->
+            <div class="flex items-center space-x-5">
+                <!-- Dark Mode Toggle -->
+                <button onclick="toggleDarkMode()" class="text-xl text-gray-600 dark:text-amber-400 focus:outline-none">
+                    <i id="dark-icon" class="fas fa-moon"></i>
+                </button>
+
+                <div class="hidden md:flex space-x-4">
+                    <a href="https://web.facebook.com/p/Sri-Lanka-Scrabble-Academy" target="_blank" class="text-emerald-800 hover:text-amber-500"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/slscrabbleacademy?igsh=MTBpaHJ4YjAyeHFjZQ==" target="_blank" class="text-emerald-800 hover:text-amber-500"><i class="fab fa-instagram"></i></a>
+                    <a href="http://www.youtube.com/@SLScrabbleAcademy" target="_blank" class="text-emerald-800 hover:text-amber-500"><i class="fab fa-youtube"></i></a>
+                </div>
+
+                <!-- Hamburger Button -->
+                <button class="lg:hidden text-2xl text-emerald-800" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- MOBILE MENU DROPDOWN -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-slate-700">
+            <div class="flex flex-col p-6 space-y-4 font-bold text-gray-600 dark:text-gray-200">
+                <a href="javascript:void(0)" onclick="showPage('home')">Home</a>
+                <a href="javascript:void(0)" onclick="showPage('ratings')">Ratings</a>
+                <a href="javascript:void(0)" onclick="showPage('tournaments')">Tournaments</a>
+                <a href="javascript:void(0)" onclick="showPage('news')">News</a>
+                <a href="javascript:void(0)" onclick="showPage('calendar')">Calendar</a>
+                <a href="javascript:void(0)" onclick="showPage('contact')">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- MAIN CONTENT -->
-    <main class="pt-20">
+    <!-- MAIN CONTENT AREA -->
+    <main class="pt-24 md:pt-32">
 
         <!-- PAGE: HOME -->
         <section id="home" class="page-content active">
-            <!-- Hero with Slider -->
             <div class="container mx-auto px-6 py-12 flex flex-col lg:flex-row items-center gap-12">
                 <div class="lg:w-1/2 space-y-6">
                     <h1 class="text-5xl lg:text-7xl font-extrabold emerald-text leading-tight">Make Sure Every <br>Word Counts</h1>
@@ -84,11 +119,10 @@
                 <div class="lg:w-1/2 w-full">
                     <div class="slider-container shadow-2xl border-4 border-white">
                         <div class="slider-track" id="sliderTrack">
-                            <!-- SUBSTITUTE YOUR EVENT IMAGES BELOW -->
-                            <img src="img\img 1.jpeg" class="slide" alt="Event 1">
-                            <img src="img\img 2.jpeg" class="slide" alt="Event 2">
-                            <img src="img\img 3.jpeg" class="slide" alt="Event 3">
-                            <img src="img\img 4.jpeg" class="slide" alt="Event 4">
+                            <img src="img/img 1.jpeg" class="slide" alt="Event 1">
+                            <img src="img/img 2.jpeg" class="slide" alt="Event 2">
+                            <img src="img/img 3.jpeg" class="slide" alt="Event 3">
+                            <img src="img/img 4.jpeg" class="slide" alt="Event 4">
                         </div>
                     </div>
                 </div>
@@ -112,35 +146,26 @@
                 </div>
             </div>
 
-<!-- YouTube Snippet -->
+            <!-- YouTube Highlights -->
             <div class="container mx-auto px-6 py-16">
                 <div class="bg-white rounded-3xl overflow-hidden shadow-xl flex flex-col md:flex-row border border-gray-100">
                     <div class="md:w-1/2 p-12 flex flex-col justify-center">
-                        <h2 class="text-3xl font-bold emerald-text mb-4">Subscribe and Watch Our Highlights</h2>
+                        <h2 class="text-3xl font-bold emerald-text mb-4">Subscribe and Watch Highlights</h2>
                         <p class="text-gray-600 mb-6">Catch the Livestreaming of the New Year Scrabble Festival 2026. See the strategy behind the tiles.</p>
                         <div class="flex space-x-4">
-                            <!-- FIXED LINK: Removed # and added target="_blank" -->
-                            <a href="https://www.youtube.com/@SLScrabbleAcademy" target="_blank" class="flex items-center text-red-600 font-bold">
+                            <a href="http://www.youtube.com/@SLScrabbleAcademy" target="_blank" class="flex items-center text-red-600 font-bold">
                                 <i class="fab fa-youtube text-2xl mr-2"></i> Follow us on YouTube
                             </a>
                         </div>
                     </div>
                     <div class="md:w-1/2 bg-black aspect-video relative">
-                        <!-- FIXED IFRAME: Added the embed URL and parameters -->
-                        <iframe class="w-full h-full" 
-                                src="https://www.youtube.com/embed/YvMMJqZ7l2g" 
-                                title="YouTube video player" 
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                allowfullscreen>
-                        </iframe>
+                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
 
-            <!-- Section Snippets -->
+            <!-- Snippets -->
             <div class="container mx-auto px-6 py-16 grid md:grid-cols-2 gap-8">
-                <!-- News Snippet -->
                 <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
                     <div class="flex justify-between items-center mb-6">
                         <h3 class="text-2xl font-bold emerald-text">Latest News</h3>
@@ -149,8 +174,7 @@
                     <div class="space-y-4">
                         <div class="flex gap-4">
                             <div class="w-20 h-20 bg-gray-200 rounded-lg flex-shrink-0 overflow-hidden">
-                                <!-- NEWS IMAGE PLACEHOLDER -->
-                                <img src="img\img 5.jpeg" alt="News">
+                                <img src="img/img 5.jpeg" alt="News" class="w-full h-full object-cover">
                             </div>
                             <div>
                                 <h4 class="font-bold">New Year Scrabble Festival 2026</h4>
@@ -159,19 +183,18 @@
                         </div>
                     </div>
                 </div>
-                <!-- Ratings Snippet -->
                 <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
                     <div class="flex justify-between items-center mb-6">
                         <h3 class="text-2xl font-bold emerald-text">Top Rankings</h3>
                         <button onclick="showPage('ratings')" class="text-amber-600 font-bold text-sm">Full Table</button>
                     </div>
                     <div class="space-y-3">
-                        <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                            <span class="font-bold text-emerald-800">1. Raashid Sudin</span>
+                        <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-slate-700 rounded-lg">
+                            <span class="font-bold text-emerald-800 dark:text-emerald-400">1. Raashid Sudin</span>
                             <span class="bg-amber-100 text-amber-800 px-3 py-1 rounded text-xs font-bold">1945</span>
                         </div>
-                        <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                            <span class="font-bold text-emerald-800">2. Kavindu Malli</span>
+                        <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-slate-700 rounded-lg">
+                            <span class="font-bold text-emerald-800 dark:text-emerald-400">2. Kavindu Malli</span>
                             <span class="bg-amber-100 text-amber-800 px-3 py-1 rounded text-xs font-bold">1820</span>
                         </div>
                     </div>
@@ -181,49 +204,36 @@
 
         <!-- PAGE: RATINGS -->
         <section id="ratings" class="page-content">
-            <div class="container mx-auto px-6 py-12">
-                <h2 class="text-4xl font-extrabold emerald-text mb-8 text-center">Academy Ratings</h2>
+            <div class="container mx-auto px-6 py-12 text-center">
+                <h2 class="text-4xl font-extrabold emerald-text mb-8">Academy Ratings</h2>
                 <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
-                    <div class="p-6 bg-emerald-50 flex flex-col md:flex-row justify-between gap-4">
-                        <input type="text" id="ratingSearch" placeholder="Search for a player..." class="px-6 py-3 rounded-xl border border-gray-300 w-full md:w-96 focus:ring-2 focus:ring-emerald-500 outline-none">
-                        <div class="flex items-center space-x-2 text-sm">
-                            <span class="font-bold text-gray-500 uppercase">Sort by:</span>
-                            <select class="bg-transparent font-bold emerald-text outline-none cursor-pointer">
-                                <option>Rating High-Low</option>
-                                <option>Games Played</option>
-                            </select>
-                        </div>
+                    <div class="p-6 bg-emerald-50 dark:bg-slate-800 flex flex-col md:flex-row justify-between gap-4">
+                        <input type="text" id="ratingSearch" placeholder="Search for a player..." class="px-6 py-3 rounded-xl border border-gray-300 dark:bg-slate-700 dark:border-slate-600 w-full md:w-96 focus:ring-2 focus:ring-emerald-500 outline-none">
                     </div>
-                    <table class="w-full text-left">
-                        <thead>
-                            <tr class="bg-emerald-800 text-white uppercase text-xs tracking-widest">
-                                <th class="px-6 py-4">Rank</th>
-                                <th class="px-6 py-4">Player Name</th>
-                                <th class="px-6 py-4">Rating</th>
-                                <th class="px-6 py-4">Games</th>
-                                <th class="px-6 py-4">Last Played</th>
-                                <th class="px-6 py-4">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody id="ratingTableBody">
-                            <tr class="border-b hover:bg-emerald-50 transition">
-                                <td class="px-6 py-4 font-bold">#1</td>
-                                <td class="px-6 py-4 font-bold">Raashid Sudin</td>
-                                <td class="px-6 py-4">1945</td>
-                                <td class="px-6 py-4">412</td>
-                                <td class="px-6 py-4 text-gray-500">Oct 12, 2023</td>
-                                <td class="px-6 py-4"><span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold uppercase">Grandmaster</span></td>
-                            </tr>
-                            <tr class="border-b hover:bg-emerald-50 transition">
-                                <td class="px-6 py-4 font-bold text-gray-400">#2</td>
-                                <td class="px-6 py-4 font-bold">Kavindu Malli</td>
-                                <td class="px-6 py-4">1820</td>
-                                <td class="px-6 py-4">356</td>
-                                <td class="px-6 py-4 text-gray-500">Oct 05, 2023</td>
-                                <td class="px-6 py-4"><span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold uppercase">Expert</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="bg-emerald-800 text-white uppercase text-xs tracking-widest">
+                                    <th class="px-6 py-4">Rank</th>
+                                    <th class="px-6 py-4">Player Name</th>
+                                    <th class="px-6 py-4">Rating</th>
+                                    <th class="px-6 py-4">Games</th>
+                                    <th class="px-6 py-4">Last Played</th>
+                                    <th class="px-6 py-4">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ratingTableBody">
+                                <tr class="border-b dark:border-slate-700 hover:bg-emerald-50 dark:hover:bg-slate-700 transition">
+                                    <td class="px-6 py-4 font-bold">#1</td>
+                                    <td class="px-6 py-4 font-bold">Raashid Sudin</td>
+                                    <td class="px-6 py-4">1945</td>
+                                    <td class="px-6 py-4">412</td>
+                                    <td class="px-6 py-4 opacity-70">Oct 12, 2023</td>
+                                    <td class="px-6 py-4"><span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold uppercase">Grandmaster</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </section>
@@ -233,17 +243,15 @@
             <div class="container mx-auto px-6 py-12">
                 <h2 class="text-4xl font-extrabold emerald-text mb-12 text-center">Tournament Archives</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Tournament Card -->
-                    <div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all border border-gray-100 flex flex-col h-full overflow-hidden">
+                    <div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all border border-gray-100 overflow-hidden flex flex-col h-full">
                         <div class="h-48 bg-emerald-900 relative">
-                            <!-- TOURNAMENT IMAGE PLACEHOLDER -->
-                            <img src="img\img 1.jpeg" class="w-full h-full object-cover opacity-50" alt="Tournament">
+                            <img src="img/img 1.jpeg" class="w-full h-full object-cover opacity-50" alt="Tournament">
                             <div class="absolute top-4 right-4 bg-amber-500 text-white font-bold px-4 py-1 rounded-full text-xs">OPEN</div>
                         </div>
                         <div class="p-8 flex flex-col flex-grow">
                             <span class="text-amber-600 font-bold text-sm mb-2">29th MAR - COLOMBO</span>
                             <h3 class="text-2xl font-bold emerald-text mb-4">New Year Scrabble Festival 2026</h3>
-                            <p class="text-gray-600 text-sm mb-6 flex-grow">The first WESPA Rated tournament in Sri Lanka after 2024. Featured the Championship, Plate & Under 12 Categories</p>
+                            <p class="text-gray-600 text-sm mb-6 flex-grow">WESPA Rated tournament. Features Championship, Plate & Under 12 Categories.</p>
                             <button class="w-full bg-emerald-800 text-white py-4 rounded-xl font-bold hover:bg-emerald-700 transition">Tournament Results</button>
                         </div>
                     </div>
@@ -254,18 +262,16 @@
         <!-- PAGE: NEWS -->
         <section id="news" class="page-content">
             <div class="container mx-auto px-6 py-12 text-center">
-                <h2 class="text-4xl font-extrabold emerald-text mb-12">Academy News & Updates</h2>
+                <h2 class="text-4xl font-extrabold emerald-text mb-12">Academy News</h2>
                 <div class="grid md:grid-cols-3 gap-8">
-                    <!-- News Card -->
                     <div class="bg-white text-left rounded-3xl shadow-md border border-gray-100 overflow-hidden group">
                         <div class="h-56 bg-gray-200 overflow-hidden">
-                             <!-- NEWS IMAGE PLACEHOLDER -->
                             <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1000" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                         </div>
                         <div class="p-8">
                             <p class="text-amber-600 text-xs font-bold uppercase mb-2">Oct 20, 2023</p>
                             <h3 class="text-xl font-bold emerald-text mb-3">New Youth Program Launched</h3>
-                            <p class="text-gray-600 text-sm mb-6">Developing the next generation of Scrabble stars in the Central Province...</p>
+                            <p class="text-gray-600 text-sm mb-6">Developing the next generation of Scrabble stars in the Central Province.</p>
                             <a href="#" class="emerald-text font-bold text-sm">Read Article <i class="fas fa-arrow-right ml-1 text-xs"></i></a>
                         </div>
                     </div>
@@ -273,22 +279,21 @@
             </div>
         </section>
 
-        <!-- PAGE: CALENDAR (Uses Tournament Card Template) -->
+        <!-- PAGE: CALENDAR -->
         <section id="calendar" class="page-content">
-            <div class="container mx-auto px-6 py-12">
-                <h2 class="text-4xl font-extrabold emerald-text mb-4 text-center">Event Calendar</h2>
-                <p class="text-center text-gray-500 mb-12 uppercase tracking-widest font-bold">2023 / 2024 Season</p>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Calendar Card (Reusing Tournament Template) -->
+            <div class="container mx-auto px-6 py-12 text-center">
+                <h2 class="text-4xl font-extrabold emerald-text mb-4">Event Calendar</h2>
+                <p class="text-gray-500 mb-12 uppercase tracking-widest font-bold">2023 / 2024 Season</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
                     <div class="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
-                        <div class="p-8 bg-emerald-50 border-b">
-                            <h4 class="text-emerald-800 font-extrabold text-4xl mb-1">22</h4>
+                        <div class="p-8 bg-emerald-50 dark:bg-slate-800 border-b dark:border-slate-700">
+                            <h4 class="text-emerald-800 dark:text-emerald-400 font-extrabold text-4xl mb-1">22</h4>
                             <p class="text-amber-600 font-bold uppercase tracking-tighter">November 2023</p>
                         </div>
                         <div class="p-8">
                             <h3 class="text-xl font-bold emerald-text mb-2">Intermediate Strategy Workshop</h3>
                             <p class="text-gray-500 text-sm mb-6">Location: Academy Headquarters / Zoom</p>
-                            <a href="https://your-info-link.com" target="_blank" class="block w-full text-center bg-white border-2 border-emerald-800 emerald-text py-3 rounded-xl font-bold hover:bg-emerald-800 hover:text-white transition">More Information</a>
+                            <a href="#" class="block w-full text-center bg-white border-2 border-emerald-800 emerald-text py-3 rounded-xl font-bold hover:bg-emerald-800 hover:text-white transition">More Information</a>
                         </div>
                     </div>
                 </div>
@@ -308,9 +313,9 @@
                 </div>
                 <div class="md:w-2/3 p-12">
                     <form class="space-y-4">
-                        <input type="text" placeholder="Your Name" class="w-full p-4 bg-gray-50 rounded-xl border outline-none focus:ring-2 focus:ring-emerald-500">
-                        <input type="email" placeholder="Email Address" class="w-full p-4 bg-gray-50 rounded-xl border outline-none focus:ring-2 focus:ring-emerald-500">
-                        <textarea placeholder="Your Message" rows="4" class="w-full p-4 bg-gray-50 rounded-xl border outline-none focus:ring-2 focus:ring-emerald-500"></textarea>
+                        <input type="text" placeholder="Your Name" class="w-full p-4 bg-gray-50 dark:bg-slate-700 rounded-xl border outline-none focus:ring-2 focus:ring-emerald-500">
+                        <input type="email" placeholder="Email Address" class="w-full p-4 bg-gray-50 dark:bg-slate-700 rounded-xl border outline-none focus:ring-2 focus:ring-emerald-500">
+                        <textarea placeholder="Your Message" rows="4" class="w-full p-4 bg-gray-50 dark:bg-slate-700 rounded-xl border outline-none focus:ring-2 focus:ring-emerald-500"></textarea>
                         <button class="w-full bg-emerald-800 text-white font-bold py-4 rounded-xl hover:bg-emerald-700 transition">Send Message</button>
                     </form>
                 </div>
@@ -320,13 +325,13 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-gray-100 py-12 mt-20">
+    <footer class="bg-gray-100 dark:bg-slate-900 py-12 mt-20">
         <div class="container mx-auto px-6 text-center">
-            <div class="flex justify-center space-x-6 mb-8 text-2xl text-emerald-800">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
+            <div class="flex justify-center space-x-6 mb-8 text-2xl text-emerald-800 dark:text-emerald-400">
+                <a href="https://web.facebook.com/p/Sri-Lanka-Scrabble-Academy" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/slscrabbleacademy?igsh=MTBpaHJ4YjAyeHFjZQ==" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="http://www.youtube.com/@SLScrabbleAcademy" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
             </div>
             <p class="text-gray-500 text-sm font-bold">&copy; 2025 SRI LANKA SCRABBLE ACADEMY. ALL RIGHTS RESERVED.</p>
         </div>
@@ -337,10 +342,30 @@
         function showPage(pageId) {
             document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
+            
+            // Close mobile menu if open
+            document.getElementById('mobile-menu').classList.add('hidden');
             window.scrollTo(0, 0);
             
-            if (pageId === 'home') {
-                startCounters();
+            if (pageId === 'home') startCounters();
+        }
+
+        // MOBILE MENU TOGGLE
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // DARK MODE TOGGLE
+        function toggleDarkMode() {
+            const body = document.body;
+            const icon = document.getElementById('dark-icon');
+            body.classList.toggle('dark');
+            
+            if (body.classList.contains('dark')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
             }
         }
 
@@ -367,10 +392,11 @@
         let slideIndex = 0;
         const track = document.getElementById('sliderTrack');
         const slides = document.querySelectorAll('.slide');
-        
         function moveSlider() {
-            slideIndex = (slideIndex + 1) % slides.length;
-            track.style.transform = `translateX(-${slideIndex * 100}%)`;
+            if (track) {
+                slideIndex = (slideIndex + 1) % slides.length;
+                track.style.transform = `translateX(-${slideIndex * 100}%)`;
+            }
         }
         setInterval(moveSlider, 4000);
 
