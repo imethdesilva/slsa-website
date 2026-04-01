@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sri Lanka Scrabble Academy (SLSA)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .scrabble-tile { background-color: #f3cf7a; border-radius: 4px; box-shadow: 2px 2px 0px #b89546; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Navigation -->
+    <nav class="bg-emerald-800 text-white sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="scrabble-tile w-10 h-10 flex items-center justify-center text-emerald-900 font-bold text-xl">S</div>
+                <span class="text-xl font-bold tracking-tight">SL Scrabble Academy</span>
+            </div>
+            <div class="hidden md:flex space-x-8 font-medium">
+                <a href="#home" class="hover:text-amber-400 transition">Home</a>
+                <a href="#ratings" class="hover:text-amber-400 transition">Ratings</a>
+                <a href="#tournaments" class="hover:text-amber-400 transition">Tournaments</a>
+                <a href="#news" class="hover:text-amber-400 transition">News</a>
+                <a href="#contact" class="hover:text-amber-400 transition">Contact</a>
+            </div>
+            <button class="md:hidden text-2xl"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="relative bg-emerald-900 text-white py-24 px-6">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Master the Board, Lead the Game.</h1>
+            <p class="text-xl mb-8 text-emerald-100 max-w-2xl mx-auto">The premier destination for competitive Scrabble in Sri Lanka. From beginners to international champions.</p>
+            <div class="flex justify-center gap-4">
+                <a href="#tournaments" class="bg-amber-500 hover:bg-amber-600 text-emerald-950 px-8 py-3 rounded-lg font-bold transition">Join a Tournament</a>
+                <a href="#ratings" class="border border-white hover:bg-white hover:text-emerald-900 px-8 py-3 rounded-lg font-bold transition">View Rankings</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Ratings Section -->
+    <section id="ratings" class="py-20 container mx-auto px-6">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-emerald-900">National Player Ratings</h2>
+            <p class="text-gray-600">Updated weekly based on local and international performances.</p>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="p-4 border-b">
+                <input type="text" id="ratingSearch" placeholder="Search for a player..." class="w-full md:w-1/3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500">
+            </div>
+            <table class="w-full text-left">
+                <thead class="bg-gray-100">
+                    <tr>
+                        <th class="px-6 py-4">Rank</th>
+                        <th class="px-6 py-4">Player Name</th>
+                        <th class="px-6 py-4">Rating</th>
+                        <th class="px-6 py-4">Status</th>
+                    </tr>
+                </thead>
+                <tbody id="ratingTableBody">
+                    <tr class="border-b hover:bg-emerald-50">
+                        <td class="px-6 py-4 font-bold">1</td>
+                        <td class="px-6 py-4">Aravinda Kumar</td>
+                        <td class="px-6 py-4">1945</td>
+                        <td class="px-6 py-4"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Grandmaster</span></td>
+                    </tr>
+                    <tr class="border-b hover:bg-emerald-50">
+                        <td class="px-6 py-4 font-bold">2</td>
+                        <td class="px-6 py-4">Sandali Perera</td>
+                        <td class="px-6 py-4">1820</td>
+                        <td class="px-6 py-4"><span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">Expert</span></td>
+                    </tr>
+                    <!-- More rows can be added here -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Tournaments Section -->
+    <section id="tournaments" class="py-20 bg-emerald-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-emerald-900 mb-12">Upcoming Tournaments</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Tournament Card -->
+                <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-amber-500">
+                    <div class="text-emerald-700 font-bold mb-2">OCT 15, 2023</div>
+                    <h3 class="text-xl font-bold mb-4">Colombo Open Championship</h3>
+                    <p class="text-gray-600 mb-6">Venue: Royal College Main Hall<br>Division: A, B & Under 15</p>
+                    <button class="w-full bg-emerald-800 text-white py-2 rounded hover:bg-emerald-700">Register Now</button>
+                </div>
+                <!-- Tournament Card -->
+                <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-amber-500">
+                    <div class="text-emerald-700 font-bold mb-2">NOV 02, 2023</div>
+                    <h3 class="text-xl font-bold mb-4">Island-wide Youth Scrabble</h3>
+                    <p class="text-gray-600 mb-6">Venue: Kandy Community Center<br>Division: Schools Only</p>
+                    <button class="w-full bg-emerald-800 text-white py-2 rounded hover:bg-emerald-700">Register Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 container mx-auto px-6">
+        <div class="flex flex-wrap -mx-6">
+            <div class="w-full lg:w-1/2 px-6 mb-12 lg:mb-0">
+                <h2 class="text-3xl font-bold text-emerald-900 mb-6">Get in Touch</h2>
+                <p class="text-gray-600 mb-8">Have questions about memberships or coaching? Send us a message and our team will get back to you.</p>
+                <div class="space-y-4">
+                    <p><i class="fas fa-envelope text-emerald-700 mr-3"></i> info@scrabbleacademy.lk</p>
+                    <p><i class="fas fa-phone text-emerald-700 mr-3"></i> +94 11 234 5678</p>
+                    <p><i class="fas fa-location-dot text-emerald-700 mr-3"></i> No. 45, Racecourse Avenue, Colombo 07</p>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/2 px-6">
+                <form class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="mb-4">
+                        <label class="block text-sm font-bold mb-2">Name</label>
+                        <input type="text" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-bold mb-2">Email</label>
+                        <input type="email" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-bold mb-2">Message</label>
+                        <textarea class="w-full px-4 py-2 border rounded-lg h-32 focus:ring-2 focus:ring-emerald-500 outline-none"></textarea>
+                    </div>
+                    <button class="w-full bg-amber-500 text-emerald-950 font-bold py-3 rounded-lg hover:bg-amber-600">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-emerald-950 text-white py-10 border-t border-emerald-800">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2023 Sri Lanka Scrabble Academy. All Rights Reserved.</p>
+            <div class="flex justify-center space-x-6 mt-4">
+                <a href="#" class="text-xl hover:text-amber-400"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-xl hover:text-amber-400"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-xl hover:text-amber-400"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple Rating Search Filter
+        document.getElementById('ratingSearch').addEventListener('keyup', function() {
+            let filter = this.value.toUpperCase();
+            let rows = document.querySelector("#ratingTableBody").rows;
+            
+            for (let i = 0; i < rows.length; i++) {
+                let firstCol = rows[i].cells[1].textContent.toUpperCase();
+                if (firstCol.indexOf(filter) > -1) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }      
+            }
+        });
+    </script>
+</body>
+</html>
